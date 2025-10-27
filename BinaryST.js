@@ -40,9 +40,9 @@ class BinarySearchTree {
         let curr = this.root;
 
         while (curr) {
-            if (key > curr.right) {
+            if (key > curr.key) {
                 curr = curr.right;
-            } else if (key < curr.left) {
+            } else if (key < curr.key) {
                 curr = curr.left;
             } else {
                 return true;
@@ -51,11 +51,24 @@ class BinarySearchTree {
 
         return false;
     }
+
+    preorder(node) {
+        if (node == null) {
+            return;
+        }
+        console.log(node.key)
+        this.preorder(node.left)
+        this.preorder(node.right)
+    }
 }
 
 const bst = new BinarySearchTree();
 bst.insert(50);
 bst.insert(25);
+bst.insert(15);
+bst.insert(16)
 bst.insert(75);
 console.log(bst.search(100));
 console.log(bst);
+console.log("Recorrido preorder:");
+bst.preorder(bst.root);
