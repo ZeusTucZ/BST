@@ -68,15 +68,15 @@ export class BinarySearchTree {
         return current_node.key;
     }
 
-    __delete_node(current_node, value){
+    __remove_node(current_node, value){
         if (current_node == null){
             return null;
         }
         if (value < current_node.key){
-            current_node.left = this.__delete_node(current_node.left, value);
+            current_node.left = this.__remove_node(current_node.left, value);
         }
         else if (value > current_node.key){
-            current_node.right = this.__delete_node(current_node.right, value);
+            current_node.right = this.__remove_node(current_node.right, value);
         }
         else{
             // Caso 1: sin hijos
@@ -94,13 +94,15 @@ export class BinarySearchTree {
             else{
                 const sub_tree_min = this.min_value(current_node.right);
                 current_node.key = sub_tree_min;
-                current_node.right = this.__delete_node(current_node.right, sub_tree_min);
+                current_node.right = this.__remove_node(current_node.right, sub_tree_min);
             }
         }
         return current_node;
     }
 
-    delete_node(value){
+    remove_node(value){
         this.root = this.__delete_node(this.root, value);
     }
+
+    // display(){}
 }
