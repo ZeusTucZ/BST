@@ -45,7 +45,7 @@ Antes:
  / \\  / \\
 10 20 30 40
 `);
-bst.delete_node(10);
+bst.remove_node(10);
 console.log("Después:");
 bst.preorder(bst.root);
 console.log(`
@@ -74,7 +74,7 @@ Antes:
    \\  / \\
    20 30 40
 `);
-bst.delete_node(15);
+bst.remove_node(15);
 console.log("Después:");
 bst.preorder(bst.root);
 console.log(`
@@ -103,7 +103,7 @@ Antes:
       / \\
      30 40
 `);
-bst.delete_node(25);
+bst.remove_node(25);
 console.log("Después:");
 bst.preorder(bst.root);
 console.log(`
