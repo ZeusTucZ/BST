@@ -1,4 +1,4 @@
-class Node {
+export class Node {
     constructor(key) {
         this.key = key;
         this.left = null;
@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-class BinarySearchTree {
+export class BinarySearchTree {
     constructor() {
         this.root = null;
     }
@@ -60,15 +60,47 @@ class BinarySearchTree {
         this.preorder(node.left)
         this.preorder(node.right)
     }
-}
 
-const bst = new BinarySearchTree();
-bst.insert(50);
-bst.insert(25);
-bst.insert(15);
-bst.insert(16)
-bst.insert(75);
-console.log(bst.search(100));
-console.log(bst);
-console.log("Recorrido preorder:");
-bst.preorder(bst.root);
+    min_value(current_node){
+        while (current_node.left !== null){
+            current_node = current_node.left;
+        }
+        return current_node.key;
+    }
+
+    __delete_node(current_node, value){
+        if (current_node == null){
+            return null;
+        }
+        if (value < current_node.key){
+            current_node.left = this.__delete_node(current_node.left, value);
+        }
+        else if (value > current_node.key){
+            current_node.right = this.__delete_node(current_node.right, value);
+        }
+        else{
+            // Caso 1: sin hijos
+            if(current_node.left == null && current_node.right == null){
+                return null;
+            }
+            // Caso 2: un solo hijo
+            else if(current_node.left == null){
+                current_node = current_node.right;
+            }
+            else if(current_node.right == null){
+                current_node = current_node.left;
+            }
+            // Caso 3: dos hijos
+            else{
+                const sub_tree_min = this.min_value(current_node.right);
+                current_node.key = sub_tree_min;
+                current_node.right = this.__delete_node(current_node.right, sub_tree_min);
+            }
+        }
+        return current_node;
+    }
+
+    delete_node(value){
+        this.root = this.__delete_node(this.root, value);
+    }
+}
