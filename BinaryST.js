@@ -61,6 +61,14 @@ export class BinarySearchTree {
         this.preorder(node.right)
     }
 
+     postorder(node = this.root) {
+    if (node !== null) {
+      this.postorder(node.left);
+      this.postorder(node.right);
+      console.log(node.key);
+    }
+  }
+
     min_value(current_node){
         while (current_node.left !== null){
             current_node = current_node.left;
