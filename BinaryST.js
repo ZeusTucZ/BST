@@ -104,5 +104,7 @@ export class BinarySearchTree {
         this.root = this.__delete_node(this.root, value);
     }
 
-    // display(){}
+    display() {
+        console.log(this.inOrder().join(" "));
+    }
 }
