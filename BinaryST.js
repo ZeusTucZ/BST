@@ -101,7 +101,7 @@ export class BinarySearchTree {
     }
 
     remove_node(value){
-        this.root = this.__delete_node(this.root, value);
+        this.root = this.__remove_node(this.root, value);
     }
 
     display() {
