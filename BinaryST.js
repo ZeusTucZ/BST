@@ -95,21 +95,13 @@ export class BinarySearchTree {
         this.root = this.__remove_node(this.root, value);
     }
     
-    inOrder() {
-        const results = [];
-
-        function traverse(current_node) {
-            if (current_node.left !== null) {
-                traverse(current_node.left);
-            }
-            results.push(current_node.key);
-            if (current_node.right !== null) {
-                traverse(current_node.right);
-            }
-        }
-
-        traverse(this.root);
-        return results;
+    inOrder(node = this.root, result = []) {
+    if (node !== null) {
+        this.inOrder(node.left, result);   
+        result.push(node.key);             
+        this.inOrder(node.right, result);  
+    }
+    return result;
     }
     
     preorder(node) {
