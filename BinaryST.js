@@ -51,23 +51,14 @@ export class BinarySearchTree {
 
         return false;
     }
-
-    preorder(node) {
-        if (node == null) {
-            return;
-        }
-        console.log(node.key)
-        this.preorder(node.left)
-        this.preorder(node.right)
-    }
-
+    
     min_value(current_node){
         while (current_node.left !== null){
             current_node = current_node.left;
         }
         return current_node.key;
     }
-
+    
     __remove_node(current_node, value){
         if (current_node == null){
             return null;
@@ -99,9 +90,43 @@ export class BinarySearchTree {
         }
         return current_node;
     }
-
+    
     remove_node(value){
         this.root = this.__remove_node(this.root, value);
+    }
+    
+    inOrder() {
+        const results = [];
+
+        function traverse(current_node) {
+            if (current_node.left !== null) {
+                traverse(current_node.left);
+            }
+            results.push(current_node.key);
+            if (current_node.right !== null) {
+                traverse(current_node.right);
+            }
+        }
+
+        traverse(this.root);
+        return results;
+    }
+    
+    preorder(node) {
+        if (node == null) {
+            return;
+        }
+        console.log(node.key)
+        this.preorder(node.left)
+        this.preorder(node.right)
+    }
+
+    postOrder(node = this.root){
+        if (node !== null){
+            this.postOrder(node.left);
+            this.postOrder(node.right);
+            console.log(node.key);
+        }
     }
 
     display() {
